@@ -16,7 +16,8 @@ class MetaAuth {
         signature: 'MetaSignature',
         message: 'MetaMessage',
         address: 'MetaAddress',
-        banner: '*** WARNING *** Ask the site to change the default banner *** WARNING ***'
+        dAppName: '*** WARNING *** Put your dApp name *** WARNING ***',
+        action: 'Authentication'
       }
 
       this.options = Object.assign(
@@ -62,29 +63,67 @@ class MetaAuth {
 
     cache.set(address.toLowerCase(), hash);
 
-    const challenge = [{
-      type: 'string',
-      name: 'banner',
-      value: this.options.banner
-    }, {
-      type: 'string',
-      name: 'challenge',
-      value: hash
-    }];
+    const domain = [
+      {name:'dApp' , type:'string'},
+      {name:'action', type:'string'}
+    ]
+
+    const message = [
+      {name:'challenge', type:'string'}
+    ]
+
+    const domainData = [{
+      dApp: this.options.dAppName,
+      action: this.options.action
+    }]
+
+    const messageData = [{
+      challenge: hash
+    }]
+
+
+    const challenge = JSON.stringify({
+      types: {
+          EIP712Domain: domain,
+          Challenge: message
+      },
+      domain: domainData,
+      primaryType: "Challenge",
+      message: messageData
+    })
 
     return challenge;
   }
 
   checkChallenge(challenge, sig) {
-    const data = [{
-      type: 'string',
-      name: 'banner',
-      value: this.options.banner
-    }, {
-      type: 'string',
-      name: 'challenge',
-      value: challenge
-    }];
+    const domain = [
+      {name:'dApp' , type:'string'},
+      {name:'action', type:'string'}
+    ]
+
+    const message = [
+      {name:'challenge', type:'string'}
+    ]
+
+    const domainData = [{
+      dApp: this.options.dAppName,
+      action: this.options.action
+    }]
+
+    const messageData = [{
+      challenge: challenge
+    }]
+
+    const data = JSON.stringify({
+      types: {
+          EIP712Domain: domain,
+          Challenge: message
+      },
+      domain: domainData,
+      primaryType: "Challenge",
+      message: messageData
+    })
+    
     const recovered = sigUtil.recoverTypedSignature({
       data,
       sig

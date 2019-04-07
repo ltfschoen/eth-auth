@@ -1,29 +1,25 @@
 {
-  "name": "meta-auth",
-  "version": "1.1.1",
-  "description": "express middleware for metamask authentication",
+  "name": "eth-auth",
+  "version": "1.0",
+  "description": "express middleware for ethereum provider authentication with EIP712",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/I-Gave/meta-auth.git"
+    "url": "git+https://github.com/senarma/eth-auth.git"
   },
   "keywords": [
-    "metamask",
     "ethereum",
     "authentication",
     "security"
   ],
-  "author": "alex sherbuck",
+  "author": "henrique sena / alex sherbuck",
   "license": "BSD-3-Clause",
-  "bugs": {
-    "url": "https://github.com/I-Gave/meta-auth/issues"
-  },
-  "homepage": "https://github.com/I-Gave/meta-auth#readme",
+  "homepage": "https://github.com/senarma/eth-auth",
   "dependencies": {
-    "eth-sig-util": "^1.4.2",
+    "eth-sig-util": "^2.0.2",
     "ethereumjs-util": "^5.1.4",
     "node-cache": "^4.1.1",
     "uuid": "^3.2.1"
