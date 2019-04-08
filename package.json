@@ -1,6 +1,6 @@
 {
   "name": "eth-auth",
-  "version": "1.0",
+  "version": "0.1.0",
   "description": "express middleware for ethereum provider authentication with EIP712",
   "main": "index.js",
   "scripts": {
