@@ -10,8 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "meta-auth": "^1.1.2"
+    "eth-auth": "https://github.com/senarma/eth-auth",
+    "express": "^4.16.3"
   }
 }

@@ -72,14 +72,14 @@ class MetaAuth {
       {name:'challenge', type:'string'}
     ]
 
-    const domainData = [{
+    const domainData = {
       dApp: this.options.dAppName,
       action: this.options.action
-    }]
+    }
 
-    const messageData = [{
+    const messageData = {
       challenge: hash
-    }]
+    }
 
 
     const challenge = JSON.stringify({
@@ -95,7 +95,7 @@ class MetaAuth {
     return challenge;
   }
 
-  checkChallenge(challenge, sig) {
+  async checkChallenge(challenge, sig) {
     const domain = [
       {name:'dApp' , type:'string'},
       {name:'action', type:'string'}
@@ -105,16 +105,16 @@ class MetaAuth {
       {name:'challenge', type:'string'}
     ]
 
-    const domainData = [{
+    const domainData = {
       dApp: this.options.dAppName,
       action: this.options.action
-    }]
+    }
 
-    const messageData = [{
+    const messageData = {
       challenge: challenge
-    }]
+    }
 
-    const data = JSON.stringify({
+    const data = {
       types: {
           EIP712Domain: domain,
           Challenge: message
@@ -122,9 +122,10 @@ class MetaAuth {
       domain: domainData,
       primaryType: "Challenge",
       message: messageData
-    })
-    
-    const recovered = sigUtil.recoverTypedSignature({
+    }
+   
+
+    const recovered = await sigUtil.recoverTypedSignature({
       data,
       sig
     });
@@ -135,7 +136,6 @@ class MetaAuth {
       cache.del(recovered);
       return recovered;
     }
-
     return false;
   }
 }

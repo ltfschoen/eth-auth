@@ -1,17 +1,21 @@
-import Web3 from "web3";
+import Web3 from'web3'
 
-const getWeb3 = () =>
-  new Promise((resolve, reject) => {
-    window.addEventListener("load", () => {
-      let web3 = window.web3;
-
-      if (typeof web3 !== "undefined") {
-        web3 = new Web3(web3.currentProvider);
-        resolve(web3);
-      } else {
-        reject("No web3 instance injected, make sure MetaMask is installed.");
-      }
-    });
-  });
-
-export default getWeb3;
+export default function getWeb3(){
+    return new Promise(async (resolve, reject) => {  
+        if(!window.ethereum && !window.web3){
+            reject('NO_WEB3')
+        } else if (window.ethereum) {
+            const web3  = new Web3(window.ethereum);
+            try{
+              await window.ethereum.enable()
+              resolve(web3)
+            } catch(err){
+              reject('USER_DENY')
+            }          
+        } else if (window.web3) {
+            const web3 = new Web3(window.web3.currentProvider);
+            resolve(web3)
+        } else {
+            reject('ERROR')
+        }
+  })}

@@ -19,7 +19,7 @@
   "license": "BSD-3-Clause",
   "homepage": "https://github.com/senarma/eth-auth",
   "dependencies": {
-    "eth-sig-util": "^2.0.2",
+    "eth-sig-util": "2.0.2",
     "ethereumjs-util": "^5.1.4",
     "node-cache": "^4.1.1",
     "uuid": "^3.2.1"
