@@ -53,8 +53,11 @@ const metaAuth = new MetaAuth({
 });
 ```
 
-## Authors
+## Author of meta-auth original package:
 
 * **Alex Sherbuck** - [I Gave](https://igave.io)
+
+## Author of the fork to use EIP-712
+* **Henrique Sena**
 
 
