@@ -1,5 +1,5 @@
 # MetaAuth
-Express middleware for handling authentication with [MetaMask](https://metamask.io).
+Express middleware for handling authentication with [MetaMask](https://metamask.io) using "eth_signTypedData_v3"
 
 ## Usage
 ```
